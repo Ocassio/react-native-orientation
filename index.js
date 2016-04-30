@@ -31,8 +31,9 @@ module.exports = {
   unlockAllOrientations() {
     Orientation.unlockAllOrientations();
   },
-  addOrientationListener(cb) {
-    listeners[cb] = DeviceEventEmitter.addListener(orientationDidChangeEvent,
+  addOrientationListener(cb, key) {
+    var _key = key ? key : cb;
+    listeners[key] = DeviceEventEmitter.addListener(orientationDidChangeEvent,
       (body) => {
         cb(body.orientation);
       });
